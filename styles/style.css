@@ -1,0 +1,11 @@
+*{
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background-color: #F0FDF4;
+    max-width: 1920px;
+    height: 100%;
+    margin: 0;
+    margin: auto;
+}
