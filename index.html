@@ -90,12 +90,12 @@
   <!-- Choose a  -->
   <section class="max-w-[1650px] mx-auto flex flex-col items-center gap-7 py-15 md:py-25">
     <h2 class="text-3xl md:text-4xl font-bold">Choose Your Trees</h2>
-    <div class="flex items-center justify-center py-15">
-
+    <div id="loading" class="hidden items-center justify-center">
+      <span class="loading loading-bars loading-xl"></span>
     </div>
-    <div class="flex gap-5">
-      <!-- Categories -->
-      <div class="flex-1 flex flex-col md:w-[250px] gap-3">
+    <div class="flex md:hidden">
+      <!-- category -->
+      <div class="flex-1 flex flex-col md:w-[250px] gap-3 mx-5 md:mx-0">
         <h2 class="text-xl font-bold">Categories</h2>
         <div class="flex flex-col">
           <ul id="category-container">
@@ -103,12 +103,8 @@
           </ul>
         </div>
       </div>
-      <!-- cards -->
-      <div id="trees-container" class="flex-4 gap-5 grid grid-cols-1 md:grid-cols-3">
-        <!-- from js -->
-      </div>
       <!-- Your Cart -->
-      <div id="" class="flex-1 flex flex-col md:w-[250px] min-h-[40vh] max-h-[70vh] bg-white rounded-lg p-5 gap-2">
+      <div id="" class="flex-1flex flex-col md:w-[250px] min-h-[40vh] max-h-[70vh] bg-white rounded-lg p-5 gap-2">
         <h2 class="text-xl font-bold text-[#1F2937]">Your Cart</h2>
         <!-- cart card -->
         <div id="cart-container" class="flex flex-col gap-2">
@@ -119,8 +115,40 @@
           <p id="total" class="text-md font-semibold">৳0</p>
         </div>
       </div>
-  </section>
+    </div>
 
+    <div id="content" class="flex flex-col md:flex-row gap-5">
+      <!-- Categories -->
+      <div class="flex-1 hidden md:flex flex-col md:w-[250px] gap-3 mx-5 md:mx-0">
+        <h2 class="text-xl font-bold">Categories</h2>
+        <div class="flex flex-col">
+          <ul id="category-container">
+            <!-- from js -->
+          </ul>
+        </div>
+      </div>
+      <!-- cards -->
+      <div id="trees-container" class="flex-4 gap-5 grid grid-cols-1 md:grid-cols-3 mx-4 md:mx-0">
+        <!-- from js -->
+      </div>
+      <!-- Your Cart -->
+      <div id="" class="flex-1 hidden md:flex flex-col md:w-[250px] min-h-[40vh] max-h-[70vh] bg-white rounded-lg p-5 gap-2">
+        <h2 class="text-xl font-bold text-[#1F2937]">Your Cart</h2>
+        <!-- cart card -->
+        <div id="cart-container" class="flex flex-col gap-2">
+          <!-- from js -->
+        </div>
+        <div id="totalDiv" class="flex justify-between border-t border-[#1F2937]/30 p-1">
+          <p class="text-md font-semibold">Total</p>
+          <p id="total" class="text-md font-semibold">৳0</p>
+        </div>
+      </div>
+    </div> 
+  </section>
+  <!-- modal -->
+   <section id="modalContainer">
+      <!-- from js -->
+    </section>
   <!-- About Campaign section -->
   <section class="max-w-[1090px] mx-auto flex flex-col items-center gap-5 md:gap-7 my-5 md:my-12">
     <h2 class="text-3xl md:text-[40px] text-[#1F2937] font-semibold">

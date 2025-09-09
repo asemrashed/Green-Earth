@@ -1,10 +1,24 @@
 const baseUrl = 'https://openapi.programming-hero.com/api'
 
 // Loading handling
-
+const loadDiv = document.getElementById('loading')
+const content = document.getElementById('content')
+// let loading = true;
+const loadHandling = (status) => {
+    if (status === true) {
+        content.classList.add('hidden')
+        loadDiv.classList.remove('hidden')
+        loadDiv.className = 'flex items-center justify-center h-[30dvh]'
+    } else {
+        loadDiv.classList.add('hidden')
+        content.classList.remove('hidden')
+        content.className = 'flex gap-5 flex-col md:flex-row'
+    }
+}
 // Categories section
 async function loadCategories() {
     try {
+        loadHandling(true)
         const res = await fetch(`${baseUrl}/categories`);
         const categories = await res.json();
         displayCategories(categories.categories)
@@ -68,17 +82,45 @@ const displayTrees = (trees) => {
                 <div class="rounded-md h-[185px] overflow-hidden">
                     <img src="${tree.image}" alt="${tree.name}" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-sm font-bold">${tree.name}</h3>
+                <h3 id="modal-btn${tree.id}" onclick="displayModal('${tree.id}','${tree.image}','${tree.name}','${tree.description}','${tree.category}','${tree.price}')" class="cursor-pointer text-sm font-bold">${tree.name}</h3>
                 <p class="text-xs">${tree.description}</p>
                 <div class="flex justify-between">
                     <div class="px-2 py-1 bg-[#DCFCE7] rounded-lg text-[#15803D] text-sm">${tree.category}</div>
-                    <div class="text-sm ">${tree.price}</div>
+                    <div class="text-sm font-semibold">৳${tree.price}</div>
                 </div>
                 <button onclick="displayCart('${tree.id}','${tree.name}', '${tree.price}')" class="btn w-full bg-[#15803D] hover:bg-[#0e5226] text-white rounded-full">Add to Cart</button>
             </div>
         `
         treesContainer.appendChild(treeCard)
+        loadHandling(false)
     }
+}
+// Modal
+const displayModal = (id, link, name, des, category, price) => {
+    const modalContainer = document.getElementById('modalContainer')
+    modalContainer.innerHTML = "";
+    const modalDiv = document.createElement('div')
+    modalDiv.innerHTML = `
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box flex flex-col bg-white p-3 md:p-5 rounded-lg gap-2 justify-between">
+                <div class="rounded-md h-70 overflow-hidden">
+                    <img src="${link}" alt="${name}" class="w-full h-full object-cover">
+                </div>
+                <h3 class="cursor-pointer text-md font-bold">${name}</h3>
+                <p class="text-sm">${des}</p>
+                <div class="flex justify-between">
+                    <div class="px-2 py-1 bg-[#DCFCE7] rounded-lg text-[#15803D] text-md">${category}</div>
+                    <div class="text-md font-semibold">৳${price}</div>
+                </div>
+                <form method="dialog" class="modal-backdrop">
+                    <button onclick="displayCart('${id}','${name}', '${price}')" class="btn w-full bg-[#15803D] hover:bg-[#0e5226] text-white rounded-full">Add to Cart</button>
+                </form>
+            </div>
+        </dialog>
+    `
+    modalContainer.appendChild(modalDiv)
+    document.getElementById('my_modal_5').showModal()
 }
 // cart section
 let totalPrice = 0;
